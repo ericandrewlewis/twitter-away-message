@@ -39,7 +39,7 @@ const randomGreeting = () => {
 
 
 const replyToTweet = options => {
-  const { tweet, client } = options;
+  const { tweet, client, tweetsRepliedTo, usersRepliedTo } = options;
   const tweetParams = {
     status: `@${tweet.user.screen_name} (away) ${randomGreeting()} - i am not on twitter for a bit! email me instead?`,
     in_reply_to_status_id: tweet.id_str
@@ -81,7 +81,7 @@ const filterMessagesToReplyTo = options => {
 }
 
 const replyToMessage = options => {
-  const {message, client} = options;
+  const {message, client, usersRepliedTo} = options;
   const messageParams = {
     event: {
       type: 'message_create',
@@ -97,8 +97,7 @@ const replyToMessage = options => {
   };
   client.post('direct_messages/events/new', messageParams).then(response => {
     console.log(response);  // Raw response object.
-    const sender_id = response.event.message_create.sender_id;
-    usersRepliedTo.add(sender_id);
+    usersRepliedTo.add(message.message_create.sender_id);
   });
 }
 

@@ -30,7 +30,7 @@ const run = () => {
       tweets, selfTwitterUserIdStr, sinceTime: startedAtTime, tweetsRepliedTo, usersRepliedTo
     });
     tweetsToReplyTo.forEach(tweet => {
-      replyToTweet({tweet, client})
+      replyToTweet({tweet, client, usersRepliedTo, tweetsRepliedTo});
     });
   });
 
@@ -44,7 +44,7 @@ const run = () => {
         sinceTime: startedAtTime
       });
       messagesToReplyTo.forEach(message => {
-        replyToMessage({message, client});
+        replyToMessage({message, client, usersRepliedTo});
       });
     });
 };
