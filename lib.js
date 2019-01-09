@@ -90,7 +90,7 @@ const replyToMessage = options => {
           recipient_id: message.message_create.sender_id
         },
         message_data:  {
-          text: `(away) ${randomGreeting()} - i am not on twitter for a bit - email me instead?`
+          text: `away -- ${randomGreeting()}, i am not on twitter for a bit. email me instead?`
         }
       }
     }
